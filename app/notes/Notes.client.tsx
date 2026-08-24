@@ -10,6 +10,7 @@ import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import Pagination from "@/components/Pagination/Pagination";
 import css from "./Notes.module.css";
 
 export default function Notes() {
@@ -66,25 +67,11 @@ export default function Notes() {
         <>
           <NoteList notes={notes} />
           {totalPages > 1 && (
-            <div className={css.pagination}>
-              <button
-                type="button"
-                disabled={page <= 1}
-                onClick={() => setPage((prev) => prev - 1)}
-              >
-                Previous
-              </button>
-              <span>
-                {page} / {totalPages}
-              </span>
-              <button
-                type="button"
-                disabled={page >= totalPages}
-                onClick={() => setPage((prev) => prev + 1)}
-              >
-                Next
-              </button>
-            </div>
+            <Pagination
+              pageCount={totalPages}
+              currentPage={page}
+              onPageChange={setPage}
+            />
           )}
         </>
       )}
