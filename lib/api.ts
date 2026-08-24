@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { CreateNotePayload, FetchNotesResponse, Note } from "@/types/note";
+import type { CreateNotePayload, Note } from "@/types/note";
 
 const API_BASE_URL = "https://notehub-public.goit.study/api";
 
@@ -14,6 +14,11 @@ export interface FetchNotesParams {
   page?: number;
   perPage?: number;
   search?: string;
+}
+
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
 }
 
 export const fetchNotes = async ({
